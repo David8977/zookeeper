@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 
 public class ZkTestMain extends Thread{
 
-	private static final int NUM=100;
+	private static final int NUM=10;
 	private static CountDownLatch countDownLatch=new CountDownLatch(NUM);
 	
 	public static void main(String[] args) {
@@ -31,10 +31,13 @@ public class ZkTestMain extends Thread{
 	}
 	private static int j = 0;
 	//jvm 自带的锁
-    //private static Lock lock=new ReentrantLock();
+     //private  Lock lock=new ReentrantLock();
 	//分布式锁
-    private static Lock lock=new ZookeeperLock();
-	private  static void CreateOrderNum() {
+     //private  Lock lock=new ZookeeperLock();
+    
+	//分布式锁
+    private   Lock lock=new zkLock();
+	private   void CreateOrderNum() {
 		//System.out.println("CreateOrderNum");
 		lock.lock();
 		try {
